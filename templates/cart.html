@@ -86,16 +86,16 @@
                                 <tr>
                                     <td class="thumbnail-img">
                                         <a href="#">
-									<img class="img-fluid" src="{{cart_item.product_image.url}}" alt="" />
+									<img class="img-fluid" src="{{cart_item.product.product_image.url}}" alt="" />
 								</a>
                                     </td>
                                     <td class="name-pr">
                                         <a href="#">
-									{{cart_item.name}}
+									{{cart_item.product.name}}
 								</a>
                                     </td>
                                     <td class="price-pr">
-                                        <p>{{cart_item.price}}</p>
+                                        <p>{{cart_item.product.price}}</p>
                                     </td>
 								</a>
                                     </td>
@@ -158,7 +158,6 @@
                         </div>
                         <hr> </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a href="checkout.html" class="ml-auto btn hvr-hover">Checkout</a> </div>
             </div>
 
         </div>

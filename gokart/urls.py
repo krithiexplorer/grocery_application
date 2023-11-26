@@ -1,15 +1,19 @@
 from django.urls import path
-from .views import home,about,shop,shopdetail,cart,checkout,myaccount,wishlist,gallery,contact
+from .views import home,login,signup,about,shop,shopdetail,checkout,myaccount,add_to_wishlist,gallery,contact,view_wishlist,add_to_cart,view_cart
 
 urlpatterns = [
-    path('', home.as_view(), name="home"),
-    path('about/', about.as_view(), name="about"),
-    path('shop/', shop.as_view(), name="shop"),
-    path('shop-detail/',shopdetail.as_view(), name="shopdetail"),
-    path('cart/', cart.as_view(), name="cart"),
-    path('checkout/', checkout.as_view(), name="checkout"),
-    path('my-account/', myaccount.as_view(), name="myaccount"),
-    path('wishlist/', wishlist.as_view(), name="wishlist"),
-    path('gallery/', gallery.as_view(), name="gallery"),
-    path('contact/', contact.as_view(), name="contact"),
+    path('', home, name="home"),
+    path('about/', about, name="about"),
+    path('login/', login, name="login"),
+    path('signup/', signup, name="signup"),
+    path('shop/', shop, name="shop"),
+    path('shop-detail/',shopdetail, name="shopdetail"),
+    path('add_to_cart/', add_to_cart, name="add_to_cart"),
+    path('view_cart/', view_cart, name="view_cart"),
+    path('checkout/', checkout, name="checkout"),
+    path('my-account/', myaccount, name="myaccount"),
+    path('add_to_wishlist/', add_to_wishlist, name='add_to_wishlist'),
+    path('view_wishlist/', view_wishlist, name='view_wishlist'),
+    path('gallery/', gallery, name="gallery"),
+    path('contact/', contact, name="contact"),
 ]

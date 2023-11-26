@@ -139,7 +139,7 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="signup" method ="post">
+    <form action="{% url 'signup' %}" method ="post">
         <h3>Signup to GoKart</h3>
         {% csrf_token %}
                     <input type="text" name="first_name" placeholder="Enter First Name">

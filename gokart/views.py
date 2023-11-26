@@ -73,22 +73,51 @@ def shopdetail(request):
     products = Product.objects.all()
     return render(request, "shop-detail.html",{'products' : products})
 
-@login_required(login_url='login')
-def cart(request):
-    cart_items = Cart.objects.all()
-    return render(request, 'cart.html', {'cart_items': cart_items})
-
 @login_required(login_url='login')    
 def checkout(request):
     return render(request, "checkout.html")       
 
 def myaccount(request):
     return render(request, "my-account.html")    
+       
 
 @login_required(login_url='login')
-def wishlist(request):
-    wishlist_items = Wishlisted.objects.all()
-    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})       
+def add_to_wishlist(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        user = request.user
+
+        # Check if the product is not already in the wishlist
+        if not Wishlisted.objects.filter(user=user, product_id=product_id).exists():
+            Wishlisted.objects.create(user=user, product_id=product_id)
+
+    # Redirect to the view_wishlist view
+    return redirect('view_wishlist')
+
+@login_required(login_url='login')
+def view_wishlist(request):
+    user = request.user
+    wishlist_items = Wishlisted.objects.filter(user=user)
+    return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
+
+@login_required(login_url='login')
+def add_to_cart(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        user = request.user
+
+        # Check if the product is not already in the wishlist
+        if not Cart.objects.filter(user=user, product_id=product_id).exists():
+            Cart.objects.create(user=user, product_id=product_id)
+
+    # Redirect to the view_wishlist view
+    return redirect('view_cart')
+
+@login_required(login_url='login')
+def view_cart(request):
+    user = request.user
+    cart_items = Cart.objects.filter(user=user)
+    return render(request, 'cart.html', {'cart_items': cart_items})
 
 def gallery(request):
     gallery = Product.objects.all()

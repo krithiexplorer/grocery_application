@@ -81,28 +81,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% user.is_authenticated %}
+                                {% if user.is_authenticated %}
                                 {% for wishlist_item in wishlist_items %}
                                 <tr>
                                     <td class="thumbnail-img">
-									<img class="img-fluid" src="{% static 'images/img-pro-01.jpg' %}" alt="" />
+									<img class="img-fluid" src="{{ wishlist_item.product.product_image.url }}" alt="" />
 								</a>
                                     </td>
                                     <td class="name-pr">
                                         <a href="#">
-									{{wishlist_item.name}}
+									{{wishlist_item.product.name}}
 								</a>
                                     </td>
                                     <td class="price-pr">
-                                        <p>{{wishlist_item.price}}</p>
+                                        <p>{{wishlist_item.product.price}}</p>
                                     </td>
                                     <td class="quantity-box">In Stock</td>
                                     <td class="add-pr">
-                                        <a class="btn hvr-hover" href="{% url 'cart' %}">Add to Cart</a>
+                                        <a class="btn hvr-hover" href="{% url 'view_cart' %}">Add to Cart</a>
                                     </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
 								</a>
                                     </td>
                                 </tr>
