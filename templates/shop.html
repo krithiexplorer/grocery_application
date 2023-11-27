@@ -99,14 +99,14 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
                                     <div class="row">
+                                        {% for product in products %}
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
-                                                {% for product in products %}
                                                 <div class="box-img-hover">
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="{{product.product_image.url}}" class="img-fluid" alt="Image">
+                                                    <img style="width:200px;height:200px;" src="{{product.product_image.url}}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li><a href="{% url 'shopdetail' %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -114,24 +114,24 @@
                                                             <li><form method="post" action="{% url 'add_to_wishlist' %}">
                                                                 {% csrf_token %}
                                                                 <input type="hidden" name="product_id" value="{{ product.id }}">
-                                                                <button type="submit"><i class="far fa-heart"></i></button>
+                                                                <button type="submit"><i class="fa fa-heart"></i></button>
                                                             </form></li>
                                                         </ul>
                                                         <form method="post" action="{% url 'add_to_cart' %}">
                                                             {% csrf_token %}
                                                             <input type="hidden" name="product_id" value="{{ product.id }}">
-                                                            <button type="submit">Add to WishList</button>
+                                                            <button class="btn btn-dark" type="submit">Add to WishList</button>
                                                         </form>
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
                                                     <h4>{{ product.name }}</h4>
-                                                    <h5> {{ product.price }} </h5>
-                                                    <h5> {{ product.quantity }} </h5>
+                                                    <h5> Rs.{{ product.price }} </h5>
+                                                    <h5> Quantity: {{ product.quantity }} </h5>
                                                 </div>
-                                                {% endfor %}
                                             </div>
                                         </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
